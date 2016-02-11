@@ -25,6 +25,7 @@ public class MusicController {
 	ListView<String> list = new ListView<String>();
 	ObservableList<String> data = FXCollections.observableArrayList("temp", "temp");
 	
+	//set up the list view
 	public ListView<String> getListView(ObservableList<String> obList) {
 		ListView<String> listView = new ListView<String>(obList);
         listView.setPrefSize(200, 250);
@@ -34,6 +35,7 @@ public class MusicController {
         	new ChangeListener<String>() {
     	       	public void changed(ObservableValue<? extends String> ov, String oldVal, String newVal) {
     	       		System.out.println("Selected: " + newVal);
+    	       		//behavior for viewing data associated with name
     	       	}
         	}
         );
@@ -41,11 +43,13 @@ public class MusicController {
         return listView;
 	}
 	
+	//make a list
 	public ObservableList<String> makeObservableArrayList(ArrayList<String> arList) {
 		ObservableList<String> obList = FXCollections.observableArrayList(arList);
 		return obList;
 	}
 	
+	//read from user defined file for data
 	public ArrayList<String> read(String path) throws FileNotFoundException {
 		Scanner s = new Scanner(new File(path));
 		ArrayList<String> list = new ArrayList<String>();
@@ -56,6 +60,7 @@ public class MusicController {
 		return list;
 	}
 	
+	//Get which button was pressed and act
 	public void convert(ActionEvent e) {
 		Button b = (Button)e.getSource();
 		if (b == add) {
@@ -68,5 +73,11 @@ public class MusicController {
 			System.out.println("delete pressed");
 		}
 	}
+	
+	//add button behavior
+	
+	//edit button behavior
+	
+	//delete button behavior
 	
 }
