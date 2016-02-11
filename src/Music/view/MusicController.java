@@ -1,0 +1,72 @@
+package Music.view;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
+public class MusicController {
+
+	@FXML Button add;
+	@FXML Button edit;
+	@FXML Button delete;
+	@FXML TextField f;
+	@FXML TextField c;
+	ListView<String> list = new ListView<String>();
+	ObservableList<String> data = FXCollections.observableArrayList("temp", "temp");
+	
+	public ListView<String> getListView(ObservableList<String> obList) {
+		ListView<String> listView = new ListView<String>(obList);
+        listView.setPrefSize(200, 250);
+        listView.setEditable(true);
+        
+        listView.getSelectionModel().selectedItemProperty().addListener(
+        	new ChangeListener<String>() {
+    	       	public void changed(ObservableValue<? extends String> ov, String oldVal, String newVal) {
+    	       		System.out.println("Selected: " + newVal);
+    	       	}
+        	}
+        );
+        
+        return listView;
+	}
+	
+	public ObservableList<String> makeObservableArrayList(ArrayList<String> arList) {
+		ObservableList<String> obList = FXCollections.observableArrayList(arList);
+		return obList;
+	}
+	
+	public ArrayList<String> read(String path) throws FileNotFoundException {
+		Scanner s = new Scanner(new File(path));
+		ArrayList<String> list = new ArrayList<String>();
+		while (s.hasNext()){
+			list.add(s.next());
+		}
+		s.close();
+		return list;
+	}
+	
+	public void convert(ActionEvent e) {
+		Button b = (Button)e.getSource();
+		if (b == add) {
+			System.out.println("add pressed");
+		}
+		if (b == edit) {
+			System.out.println("edit pressed");
+		}
+		if (b == delete) {
+			System.out.println("delete pressed");
+		}
+	}
+	
+}
