@@ -13,7 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/f2c/view/F2C.fxml"));
+		loader.setLocation(getClass().getResource("/Music/view/Test.fxml"));
 		
 		GridPane root = (GridPane)loader.load();
 		

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Music.app.app.SongDetail;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,20 +21,24 @@ public class MusicController {
 	@FXML Button add;
 	@FXML Button edit;
 	@FXML Button delete;
-	@FXML TextField f;
-	@FXML TextField c;
+	@FXML TextField name;
+	@FXML TextField artist;
+	@FXML TextField album;
+	@FXML TextField year;
+	
 	ListView<String> list = new ListView<String>();
 	ObservableList<String> data = FXCollections.observableArrayList("temp", "temp");
 	
 	//set up the list view
-	public ListView<String> getListView(ObservableList<String> obList) {
-		ListView<String> listView = new ListView<String>(obList);
+	public ListView<SongDetail> getListView(ObservableList<SongDetail> obList) {
+		ListView<SongDetail> listView = new ListView<SongDetail>(obList);
         listView.setPrefSize(200, 250);
         listView.setEditable(true);
         
         listView.getSelectionModel().selectedItemProperty().addListener(
         	new ChangeListener<String>() {
-    	       	public void changed(ObservableValue<? extends String> ov, String oldVal, String newVal) {
+    	       	@SuppressWarnings("unused")
+				public void changed(ObservableValue<? extends String> ov, String oldVal, String newVal) {
     	       		System.out.println("Selected: " + newVal);
     	       		//behavior for viewing data associated with name
     	       	}
